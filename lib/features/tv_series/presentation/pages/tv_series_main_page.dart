@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie_clean_architecture/core/localization/localization_helper.dart';
 import 'package:flutter_movie_clean_architecture/features/tv_series/presentation/pages/airing_today_page.dart';
 import 'package:flutter_movie_clean_architecture/features/tv_series/presentation/pages/on_the_air_page.dart';
 import 'package:flutter_movie_clean_architecture/features/tv_series/presentation/pages/popular_tv_series_page.dart';
@@ -36,22 +37,22 @@ class _TvSeriesMainPageState extends ConsumerState<TvSeriesMainPage> {
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.today),
-            label: 'Airing Today',
+            icon: const Icon(Icons.today),
+            label: context.translate('airing_today'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.live_tv),
-            label: 'On The Air',
+            icon: const Icon(Icons.live_tv),
+            label: context.translate('on_the_air'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Popular',
+            icon: const Icon(Icons.favorite),
+            label: context.translate('popular'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.upcoming),
-            label: 'Upcoming',
+            icon: const Icon(Icons.upcoming),
+            label: context.translate('upcoming'),
           ),
         ],
       ),

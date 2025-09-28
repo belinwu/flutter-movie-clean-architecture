@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_clean_architecture/core/config/app_constant.dart';
+import 'package:flutter_movie_clean_architecture/core/localization/localization_helper.dart';
 import 'package:flutter_movie_clean_architecture/features/celebrity/presentation/providers/celebrity_provider.dart';
 import 'package:flutter_movie_clean_architecture/features/movie/presentation/providers/movie_provider.dart';
 import 'package:flutter_movie_clean_architecture/features/tv_series/presentation/providers/tv_series_provider.dart';
@@ -145,10 +146,10 @@ class _UniversalSearchWidgetState extends ConsumerState<UniversalSearchWidget> {
 
   Widget _buildSearchResults() {
     if (_searchResults.isEmpty && _searchController.text.isNotEmpty) {
-      return const Center(
+      return Center(
         child: Padding(
-          padding: EdgeInsets.only(bottom: 24.0),
-          child: Text('No results found.'),
+          padding: const EdgeInsets.only(bottom: 24.0),
+          child: Text(context.translate('no_data')),
         ),
       );
     }
@@ -240,8 +241,8 @@ class _UniversalSearchWidgetState extends ConsumerState<UniversalSearchWidget> {
                           child: TextField(
                             controller: _searchController,
                             autofocus: true,
-                            decoration: const InputDecoration(
-                              hintText: 'Search movies, TV series, and celebrities...',
+                            decoration: InputDecoration(
+                              hintText: context.translate('search'),
                               border: InputBorder.none,
                             ),
                             onChanged: _performSearch,
@@ -269,19 +270,19 @@ class _UniversalSearchWidgetState extends ConsumerState<UniversalSearchWidget> {
                     child: Row(
                       children: [
                         ChoiceChip(
-                          label: const Text('Movies'),
+                          label: Text(context.translate('movies')),
                           selected: _activeTab == 0,
                           onSelected: (selected) => _switchTab(0),
                         ),
                         const SizedBox(width: 8),
                         ChoiceChip(
-                          label: const Text('TV Series'),
+                          label: Text(context.translate('tv_series')),
                           selected: _activeTab == 1,
                           onSelected: (selected) => _switchTab(1),
                         ),
                         const SizedBox(width: 8),
                         ChoiceChip(
-                          label: const Text('Celebrities'),
+                          label: Text(context.translate('celebrities')),
                           selected: _activeTab == 2,
                           onSelected: (selected) => _switchTab(2),
                         ),

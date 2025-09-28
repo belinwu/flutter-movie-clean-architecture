@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_movie_clean_architecture/core/config/app_constant.dart';
 import 'package:flutter_movie_clean_architecture/core/hive/favorite_model.dart';
 import 'package:flutter_movie_clean_architecture/core/hive/hive_helper.dart';
+import 'package:flutter_movie_clean_architecture/core/localization/localization_helper.dart';
 import 'package:flutter_movie_clean_architecture/core/utils/utils.dart';
 import 'package:flutter_movie_clean_architecture/features/tv_series/data/models/tv_series_credit_model.dart';
 import 'package:flutter_movie_clean_architecture/features/tv_series/presentation/providers/tv_series_provider.dart';
@@ -48,7 +49,7 @@ class TvSeriesDetailPage extends ConsumerWidget {
             children: [
               const Icon(Icons.error_outline, size: 64, color: Colors.red),
               const SizedBox(height: 16),
-              Text('Error loading TV series details',
+              Text(context.translate('error_loading_tv_series_details'),
                   style: Theme.of(context).textTheme.headlineSmall),
               const SizedBox(height: 8),
               Text(error.toString(),
@@ -57,7 +58,7 @@ class TvSeriesDetailPage extends ConsumerWidget {
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () => Navigator.pop(context),
-                child: const Text('Go Back'),
+                child: Text(context.translate('go_back')),
               ),
             ],
           ),
@@ -290,22 +291,22 @@ class TvSeriesDescriptionSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isExpanded = ref.watch(tvDescriptionExpandedProvider);
-    final overview = tvSeries.overview ?? 'No description available.';
+    final overview = tvSeries.overview ?? context.translate('no_description_available');
     const maxLength = 95;
 
     final displayText = isExpanded || overview.length <= maxLength
         ? overview
         : overview.substring(0, maxLength).trimRight();
 
-    final toggleText = isExpanded ? ' Show less' : ' Show more';
+    final toggleText = isExpanded ? ' ${context.translate('show_less')}' : ' ${context.translate('show_more')}';
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Description',
+          Text(
+            context.translate('description'),
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -359,10 +360,10 @@ class RecommendedTvSeriesSection extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.fromLTRB(16, 12, 16, 0),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
               child: Text(
-                'Recommended TV Series',
+                context.translate('recommended_tv_series'),
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -409,9 +410,9 @@ class RecommendedTvSeriesSection extends StatelessWidget {
       error: (error, _) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Text(
-          'Failed to load recommended TV series.',
-          style: TextStyle(color: Colors.red[400]),
-        ),
+            context.translate('failed_to_load_recommended_tv_series'),
+            style: TextStyle(color: Colors.red[400]),
+          ),
       ),
     );
   }
@@ -519,7 +520,7 @@ class TvSeriesCastSection extends StatelessWidget {
       error: (error, _) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Text(
-          'Failed to load cast.',
+          context.translate('failed_to_load_cast'),
           style: TextStyle(color: Colors.red[400]),
         ),
       ),

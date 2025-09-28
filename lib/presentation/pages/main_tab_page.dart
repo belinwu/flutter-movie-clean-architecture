@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie_clean_architecture/core/localization/localization_helper.dart';
 import 'package:flutter_movie_clean_architecture/features/celebrity/presentation/pages/celebrity_main_page.dart';
 import 'package:flutter_movie_clean_architecture/features/favorites/favorites_page.dart';
 import 'package:flutter_movie_clean_architecture/features/movie/presentation/pages/movie_main_page.dart';
@@ -46,14 +47,26 @@ class _MainTabPageState extends ConsumerState<MainTabPage> with SingleTickerProv
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Movie App'),
+        title: Text(context.translate('app_title')),
         bottom: TabBar(
           controller: _tabController,
-          tabs: const [
-            Tab(icon: Icon(Icons.movie), text: 'Movies'),
-            Tab(icon: Icon(Icons.tv), text: 'TV Series'),
-            Tab(icon: Icon(Icons.people), text: 'Celebrities'),
-            Tab(icon: Icon(Icons.favorite), text: 'Favorites'),
+          tabs: [
+            Tab(
+              icon: const Icon(Icons.movie), 
+              text: context.translate('movies'),
+            ),
+            Tab(
+              icon: const Icon(Icons.tv), 
+              text: context.translate('tv_series'),
+            ),
+            Tab(
+              icon: const Icon(Icons.people), 
+              text: context.translate('celebrities'),
+            ),
+            Tab(
+              icon: const Icon(Icons.favorite), 
+              text: context.translate('favorites'),
+            ),
           ],
         ),
       ),
@@ -76,6 +89,7 @@ class _MainTabPageState extends ConsumerState<MainTabPage> with SingleTickerProv
         padding: const EdgeInsets.only(bottom: 48.0), // moves FAB upward
         child: FloatingActionButton(
           onPressed: _toggleSearch,
+          tooltip: context.translate('search'),
           child: const Icon(Icons.search),
         ),
       ),
