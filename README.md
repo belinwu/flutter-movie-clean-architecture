@@ -1,7 +1,8 @@
 # Flutter Movie
-[![Flutter](https://img.shields.io/badge/Flutter-3.8.1-blue.svg?logo=flutter)](https://flutter.dev)
-[![Dart](https://img.shields.io/badge/Dart-3.3.1-blue.svg?logo=dart)](https://dart.dev)
-[![Riverpod](https://img.shields.io/badge/Riverpod-2.5.1-brightgreen?logo=flutter)](https://riverpod.dev)
+[![Flutter](https://img.shields.io/badge/Flutter-3.24.1-blue.svg?logo=flutter)](https://flutter.dev)
+[![Dart](https://img.shields.io/badge/Dart-3.6.0-blue.svg?logo=dart)](https://dart.dev)
+[![Riverpod](https://img.shields.io/badge/Riverpod-2.6.1-brightgreen?logo=flutter)](https://riverpod.dev)
+[![Localization](https://img.shields.io/badge/Localization-English_&_Spanish-blue)](https://flutter.dev/docs/development/accessibility-and-localization/internationalization)
 ![badge-Android](https://img.shields.io/badge/Platform-Android-brightgreen)
 ![badge-iOS](https://img.shields.io/badge/Platform-iOS-lightgray)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0)
@@ -46,6 +47,7 @@ Flutter Movie App built with Riverpod, Clean Architecture, and GoRouter that sho
 ### Common Features
 - 📃 Pagination (infinite scroll)
 - 🔄 Bottom Navigation
+- 🌐 Multi-language Support with Localization (English & Spanish)
 - 🧭 Declarative Routing with GoRouter
 - 🧱 Clean Architecture (Presentation / Domain / Data)
 - 🧪 Riverpod State Management
@@ -241,12 +243,13 @@ After running the app, you can:
 
 
 ## Built With 🛠
-- [Flutter](https://flutter.dev) - Google’s UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase.
+- [Flutter](https://flutter.dev) - Google's UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase.
 - [Riverpod](https://riverpod.dev) - A simple, composable, and testable state management solution for Flutter.
 - [GoRouter](https://pub.dev/packages/go_router) - Declarative routing package for Flutter, designed to work seamlessly with state management and deep linking.
 - [Dio](https://pub.dev/packages/dio) - A powerful HTTP client for Dart, supporting interceptors, global configuration, FormData, request cancellation, and more.
 - [Freezed](https://pub.dev/packages/freezed) - A code generator for immutable classes that helps with union types/pattern matching in Dart.
 - [JsonSerializable](https://pub.dev/packages/json_serializable) - Generates code for converting between Dart objects and JSON, making serialization easy.
+- [Flutter Localizations](https://flutter.dev/docs/development/accessibility-and-localization/internationalization) - Internationalization and localization support for multi-language applications.
 - [Logger / DioLogger](https://pub.dev/packages/logger) - Easy and pretty logging package for debugging; use `DioLogger` to log Dio HTTP requests and responses.
 - [Hive](https://pub.dev/packages/hive) - Lightweight and blazing fast key-value database written in pure Dart.
 - [Hive Flutter](https://pub.dev/packages/hive_flutter) - Extension for Hive that enables Flutter specific features.
