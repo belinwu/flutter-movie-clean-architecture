@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_movie_clean_architecture/core/config/app_constant.dart';
 import 'package:flutter_movie_clean_architecture/core/hive/favorite_model.dart';
 import 'package:flutter_movie_clean_architecture/core/hive/hive_helper.dart';
+import 'package:flutter_movie_clean_architecture/core/localization/localization_helper.dart';
 import 'package:flutter_movie_clean_architecture/features/movie/presentation/providers/movie_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -139,29 +140,29 @@ class _ArtistDetailPageState extends ConsumerState<ArtistDetailPage> {
                               ),
                               const SizedBox(height: 8),
                               Text(
-                                'Artist Detail',
+                                context.translate('artist_detail'),
                                 style: TextStyle(fontSize: 12, color: Colors.grey[600]),
                               ),
                               Text(
-                                artist.knownForDepartment ?? 'Acting',
+                                artist.knownForDepartment ?? context.translate('acting'),
                                 style: const TextStyle(fontSize: 16, color: Colors.black87),
                               ),
                               const SizedBox(height: 8),
                               Text(
-                                'Birthday',
+                                context.translate('birthday'),
                                 style: TextStyle(fontSize: 12, color: Colors.grey[600]),
                               ),
                               Text(
-                                artist.birthday ?? 'N/A',
+                                artist.birthday ?? context.translate('n_a'),
                                 style: const TextStyle(fontSize: 16, color: Colors.black87),
                               ),
                               const SizedBox(height: 8),
                               Text(
-                                'Place of Birth',
+                                context.translate('place_of_birth'),
                                 style: TextStyle(fontSize: 12, color: Colors.grey[600]),
                               ),
                               Text(
-                                artist.placeOfBirth ?? 'N/A',
+                                artist.placeOfBirth ?? context.translate('n_a'),
                                 style: const TextStyle(fontSize: 16, color: Colors.black87),
                               ),
                             ],
@@ -172,17 +173,17 @@ class _ArtistDetailPageState extends ConsumerState<ArtistDetailPage> {
                     const SizedBox(height: 16),
 
                     // Biography Section
-                    const Text(
-                      'Biography',
-                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    ),
+                    Text(
+            context.translate('biography'),
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
                     const SizedBox(height: 12),
                     Text(
-                      artist.biography ?? 'No biography available.',
-                      maxLines: _isExpanded ? null : 4,
-                      overflow: _isExpanded ? TextOverflow.visible : TextOverflow.ellipsis,
-                      style: const TextStyle(fontSize: 16, height: 1.5, color: Colors.black87),
-                    ),
+                        artist.biography ?? context.translate('no_biography_available'),
+                        maxLines: _isExpanded ? null : 4,
+                        overflow: _isExpanded ? TextOverflow.visible : TextOverflow.ellipsis,
+                        style: const TextStyle(fontSize: 16, height: 1.5, color: Colors.black87),
+                      ),
                     const SizedBox(height: 8),
                     GestureDetector(
                       onTap: () {
@@ -191,7 +192,7 @@ class _ArtistDetailPageState extends ConsumerState<ArtistDetailPage> {
                         });
                       },
                       child: Text(
-                        _isExpanded ? 'Show less' : 'Show more',
+                        _isExpanded ? context.translate('show_less') : context.translate('show_more'),
                         style: const TextStyle(
                           fontSize: 16,
                           color: Colors.cyan,
@@ -218,7 +219,7 @@ class _ArtistDetailPageState extends ConsumerState<ArtistDetailPage> {
             children: [
               const Icon(Icons.error_outline, size: 64, color: Colors.red),
               const SizedBox(height: 16),
-              Text('Error loading artist details',
+              Text(context.translate('error_loading_artist_details'),
                   style: Theme.of(context).textTheme.headlineSmall),
               const SizedBox(height: 8),
               Text(error.toString(),
@@ -227,7 +228,7 @@ class _ArtistDetailPageState extends ConsumerState<ArtistDetailPage> {
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () => Navigator.pop(context),
-                child: const Text('Go Back'),
+                child: Text(context.translate('go_back')),
               ),
             ],
           ),
@@ -252,10 +253,10 @@ class ArtistMoviesSection extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
               child: Text(
-                'Movies & TV Shows',
+                context.translate('movies_and_tv_shows'),
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -309,7 +310,7 @@ class ArtistMoviesSection extends StatelessWidget {
       error: (error, _) => Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: Text(
-          'Failed to load movies.',
+          context.translate('failed_to_load_movies'),
           style: TextStyle(color: Colors.red[400]),
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie_clean_architecture/core/localization/localization_helper.dart';
 import 'package:flutter_movie_clean_architecture/features/celebrity/presentation/pages/popular_persons_page.dart';
 import 'package:flutter_movie_clean_architecture/features/celebrity/presentation/pages/trending_persons_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,14 +33,14 @@ class _CelebrityMainPageState extends ConsumerState<CelebrityMainPage> {
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Popular',
+            icon: const Icon(Icons.favorite),
+            label: context.translate('popular'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.trending_up),
-            label: 'Trending',
+            icon: const Icon(Icons.trending_up),
+            label: context.translate('trending'),
           ),
         ],
       ),
