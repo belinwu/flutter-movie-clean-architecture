@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_movie_clean_architecture/core/config/app_constant.dart';
 import 'package:flutter_movie_clean_architecture/core/hive/favorite_model.dart';
 import 'package:flutter_movie_clean_architecture/core/hive/hive_helper.dart';
+import 'package:flutter_movie_clean_architecture/core/localization/localization_helper.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class FavoritesPage extends StatefulWidget {
+class FavoritesPage extends ConsumerStatefulWidget {
   const FavoritesPage({super.key});
 
   @override
-  State<FavoritesPage> createState() => _FavoritesPageState();
+  ConsumerState<FavoritesPage> createState() => _FavoritesPageState();
 }
 
-class _FavoritesPageState extends State<FavoritesPage> {
+class _FavoritesPageState extends ConsumerState<FavoritesPage> {
   int _currentIndex = 0;
   late Future<List<Favorite>> _favoritesFuture;
 
@@ -56,28 +58,28 @@ class _FavoritesPageState extends State<FavoritesPage> {
 
           if (snapshot.hasError) {
             return Center(
-              child: Text('Error loading favorites: ${snapshot.error}'),
+              child: Text(context.translate('error_loading_favorites', args: [snapshot.error.toString()])),
             );
           }
 
           final favorites = snapshot.data ?? [];
 
           if (favorites.isEmpty) {
-            return const Center(
+            return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.favorite_border, size: 64, color: Colors.grey),
-                  SizedBox(height: 16),
+                  const Icon(Icons.favorite_border, size: 64, color: Colors.grey),
+                  const SizedBox(height: 16),
                   Text(
-                    'No favorites yet',
-                    style: TextStyle(fontSize: 18, color: Colors.grey),
+                    context.translate('no_favorites_yet'),
+                    style: const TextStyle(fontSize: 18, color: Colors.grey),
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Text(
-                    'Start adding favorites from movie, TV series, or artist details',
+                    context.translate('start_adding_favorites'),
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.grey),
+                    style: const TextStyle(color: Colors.grey),
                   ),
                 ],
               ),
@@ -189,29 +191,33 @@ class _FavoritesPageState extends State<FavoritesPage> {
           );
         },
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-            _loadFavorites();
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.movie),
-            label: 'Movies',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.tv),
-            label: 'TV Series',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.people),
-            label: 'Celebrities',
-          ),
-        ],
-      ),
+      bottomNavigationBar: _buildBottomNavigationBar(context),
+    );
+  }
+
+  Widget _buildBottomNavigationBar(BuildContext context) {
+    return BottomNavigationBar(
+      currentIndex: _currentIndex,
+      onTap: (index) {
+        setState(() {
+          _currentIndex = index;
+          _loadFavorites();
+        });
+      },
+      items: [
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.movie),
+          label: context.translate('movies'),
+        ),
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.tv),
+          label: context.translate('tv_series'),
+        ),
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.people),
+          label: context.translate('celebrities'),
+        ),
+      ],
     );
   }
 

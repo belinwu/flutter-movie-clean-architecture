@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie_clean_architecture/core/localization/localization_helper.dart';
 import 'package:flutter_movie_clean_architecture/features/movie/presentation/pages/popular_page.dart';
 import 'package:flutter_movie_clean_architecture/features/movie/presentation/pages/top_rated_page.dart';
 import 'package:flutter_movie_clean_architecture/features/movie/presentation/pages/up_coming_page.dart';
@@ -37,22 +38,22 @@ class _MovieMainPageState extends ConsumerState<MovieMainPage> {
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.play_circle_fill),
-            label: 'Now Playing',
+            icon: const Icon(Icons.play_circle_fill),
+            label: context.translate('now_playing'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Popular',
+            icon: const Icon(Icons.favorite),
+            label: context.translate('popular'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.star),
-            label: 'Top Rated',
+            icon: const Icon(Icons.star),
+            label: context.translate('top_rated'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.upcoming),
-            label: 'Upcoming',
+            icon: const Icon(Icons.upcoming),
+            label: context.translate('upcoming'),
           ),
         ],
       ),
